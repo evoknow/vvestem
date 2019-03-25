@@ -1,0 +1,14 @@
+{
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.*",
+        "phpunit/phpunit": "^5.3",
+        "phpunit/phpunit-selenium": ">=1.2",
+        "leafo/scssphp": "0.7.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mike42\\WordPuzzles\\": "server"
+        }
+    }
+}
+
