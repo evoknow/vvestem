@@ -121,7 +121,7 @@ class FindAWord
     public function loadWords($words = array(), $num = 0)
     {
         $this -> words = array();
-        if (count($words) == 0) {
+        if (is_array($words) && count($words) == 0) {
             $i = 1;
             if ($num < 0) {
                 $num = 0;
@@ -135,7 +135,7 @@ class FindAWord
                 $i++;
             }
         } else {
-            foreach ($words as $word) {
+            if (is_array($words)) foreach ($words as $word) {
                 $this -> words[$word] = $word;
             }
         }

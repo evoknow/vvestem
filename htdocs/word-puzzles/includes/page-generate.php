@@ -1,30 +1,61 @@
-    <form action="index.php" method="post">
+    
+   <form action="index.php" method="post">
     <?php
+
+    session_start();
+
     foreach ($find_a_word -> failure as $eek) {
         /* Knock failed words off the main list */
         unset($find_a_word -> words[$eek]);
     }
+
+    function save_puzzle($puzzle) { 
+
+       $saved       = isset($_SESSION['saved']) ? $_SESSION['saved'] : 1;
+       $puzzle_file = tempnam("/tmp", "puzzle-$saved-") . '.html';
+
+       file_put_contents($puzzle_file, $puzzle);
+
+       return $puzzle_file;
+
+    }
+
     ?>
 
     <?php
-    echo "<div style='padding-top: 30px;'><table style=''><tr><td valign=\"top\" style=\"padding:1em\">";
-    echo "<div id=\"solution\" class=\"toggle-hidden\">";
-    echo $find_a_word -> outpTableKey();
-    echo "</div>";
-    echo "<div id=\"solution-sub\">";
-    echo $find_a_word -> outpTable($find_a_word -> puzzle);
-    echo "</div>";
-    echo "</td><td valign='top'><ul class=\"word-list\">";
-    foreach ($find_a_word -> words as $word) {
-        echo "<li>".htmlspecialchars($word)."</li>";
-    }
-    echo "</ul></td>";
-    echo "</tr></table></div>";   ?>
+    $puzzle = "<div style='padding-top: 50px;'>";
+    $puzzle .= '<table><tr>';
+    $puzzle .= "<div id='solution' class='toggle-hidden'>";
+    $puzzle .= $find_a_word -> outpTableKey();
+    $puzzle .= '</div><br>';
+    $puzzle .= "<div id='solution-sub'>";
+    $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
+    $puzzle .= '</div>';
+    $puzzle .= '</td>';
+    $puzzle .= '</tr></table></div>';
+    
 
+    $list = "<ul class='word-list'>";
+
+    foreach ($find_a_word->words as $word) {
+        $list .= "<li>".htmlspecialchars($word)."</li>";
+    }
+
+    $list .= "</ul>";
+
+    $puzzle .= $list;
+    echo $puzzle; 
+    $puzzle_file = save_puzzle($puzzle); 
+
+    ?>
+    
     <div id="solution-show">
         <input type="submit" name="submit" value="Regenerate" />
         &nbsp; &nbsp; &nbsp;
         <input type="button" onClick="toggle('solution');" value="Show solution" />
+        &nbsp; &nbsp; &nbsp;
+	<a id="print_link" href="/print.php?file=<?php echo $puzzle_file; ?>">Print Puzzle</a>
+ 
     </div>
     <hr/>
     <?php	if (count($find_a_word -> failure) > 0) {
