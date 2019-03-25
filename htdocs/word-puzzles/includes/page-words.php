@@ -2,6 +2,23 @@
 <?php
 use Mike42\WordPuzzles\FindAWord;
 
+$class = $_REQUEST['class'];
+
+if ($class)
+   $word_list_str = join("\n", get_words($class));
+
+function get_words($class) {
+  
+   $file = realpath($_SERVER['DOCUMENT_ROOT'] . '/../' .  'words.class.'. $class . '.txt');
+    
+   if (!file_exists($file)) 
+       return null;
+   
+   $list = array_values(array_filter(explode("\n",file_get_contents($file))));
+   return $list;
+
+}
+
 if ($req_word_source == "dict") {
     $fw_lang = FindAWord::supportedLanguages();
     echo "<p>Please check this list of words. These are from an <b>".$fw_lang[$req_lang] -> name."</b> dictionary.</p>";
@@ -20,6 +37,7 @@ if ($req_word_source == "dict") {
                 echo field("lang", $req_lang);
                 echo field("diagonal", $req_diagonal);
                 echo field("reverse", $req_reverse);
+                echo field("class", $_REQUEST['class']);
                 /* Check-box fields, value indicated by presence/absence */
             if ($req_fast) {
                 echo field("fast", 1);

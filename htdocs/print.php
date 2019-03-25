@@ -18,9 +18,9 @@
 
   function render($data) {
 
-	extract($data);
 	 
 	ob_start();
+	extract($data);
 	include('template.php');
 	$results = ob_get_contents();
 	ob_end_clean();

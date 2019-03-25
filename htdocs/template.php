@@ -2,9 +2,11 @@
 
   $student = isset($_REQUEST['student']) ? $_REQUEST['student'] : 'Anonymous'; 
   $grade   = isset($_REQUEST['grade']) ? $_REQUEST['grade'] : 'N/A'; 
-  $contents = date('Y-m-d H:i:s A');
+
 
 ?>
+<html>
+<head>
 <style>
 
 .find-a-word {
@@ -35,6 +37,8 @@ h2 {
 }
 
 </style>
+</head>
+<body>
 <table style="width: 100%;padding-bottom: 15px;">
 <tr>
 <td>
@@ -46,5 +50,11 @@ h2 {
 </td>
 </tr>
 </table>
-
+<h2>Your Word Search Puzzle </h2>
+<p style='text-align: center'>Created at the Valley View Elementary S.T.E.M. Expo <?php echo date('m/d/Y h:i:s a t'); ?></p>
+<div style="margin-left: 15%;  width:70%; margin-right: 15%;">
 <?php echo $contents; ?>
+</div>
+
+</body>
+</html>

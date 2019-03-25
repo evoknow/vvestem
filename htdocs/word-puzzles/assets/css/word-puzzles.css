@@ -7451,9 +7451,15 @@ td.visible-print {
 }
 
 .word-list {
-  list-style-type: none;
+  list-style-type: decimal;
   list-style-image: none;
   padding-left: 0;
+  font-size: 1.4em;
+  padding: 15px 20px;
+}
+
+.word-list li {
+  padding-right: 15px;
 }
 
 .toggle {

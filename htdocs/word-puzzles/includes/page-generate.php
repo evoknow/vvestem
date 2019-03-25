@@ -23,25 +23,25 @@
     ?>
 
     <?php
-    $puzzle = "<div style='padding-top: 50px;'>";
-    $puzzle .= '<table><tr>';
-    $puzzle .= "<div id='solution' class='toggle-hidden'>";
-    $puzzle .= $find_a_word -> outpTableKey();
-    $puzzle .= '</div><br>';
-    $puzzle .= "<div id='solution-sub'>";
+     
+
+    $solution_puzzle = '<table><tr>';
+    $solution_puzzle .= "<div id='solution' class='toggle-hidden'>";
+    $solution_puzzle .= $find_a_word -> outpTableKey();
+    $solution_puzzle .= '</div><br>';
+
+    $puzzle = "<div style='padding-top: 50px;' id='solution-sub'>";
     $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
     $puzzle .= '</div>';
-    $puzzle .= '</td>';
-    $puzzle .= '</tr></table></div>';
     
 
-    $list = "<ul class='word-list'>";
+    $list = "<ol class='word-list'>";
 
     foreach ($find_a_word->words as $word) {
         $list .= "<li>".htmlspecialchars($word)."</li>";
     }
 
-    $list .= "</ul>";
+    $list .= "</ol>";
 
     $puzzle .= $list;
     echo $puzzle; 
