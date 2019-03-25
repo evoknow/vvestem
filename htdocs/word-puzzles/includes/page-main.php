@@ -1,5 +1,23 @@
-	<h2><?php echo htmlspecialchars($page_title); ?></h2>
-        <p>This is a <b>word-search</b> (a.k.a <b>find-a-word</b>) generator. Select from the options below, or read the <a href="?action=info">info page</a> if you would like to know how it works.</p>
+<?php
+
+   $class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'k';
+   
+   switch($class) {
+
+      case '1' :  $size = 10; $words = 10; break;
+      case '2' :  $size = 10; $words = 10; break;
+      case '3' :  $size = 10; $words = 10; break;
+      case '4' :  $size = 13; $words = 15; break;
+      case '5' :  $size = 13; $words = 15; break;
+      case '6' :  $size = 13; $words = 15; break;
+      case 't' :  $size = 15; $words = 15; break;
+      case 'p' :  $size = 15; $words = 15; break;
+      default  :  $size = 8; $words = 5;
+   }
+
+?>
+
+<h2><?php echo htmlspecialchars($page_title); ?></h2>
         <form action="index.php" role="form" class="form-inline" method="post">
             <p>My puzzle will be:</p>
             <ul class="radio-list">
@@ -9,7 +27,7 @@
 for ($i = $find_a_word -> c_min_size; $i <= $find_a_word -> c_max_size; $i++) { /* Contents of size box */
     $sel_size[$i] = $i;
 }   ?>
-                <li><?php echo select("width", $sel_size, 15); ?> x <?php echo select("height", $sel_size, 15); ?> squares, with <?php echo select("word_count", $sel_words, 15); ?> words.</li>
+                <li><?php echo select("width", $sel_size, $size); ?> x <?php echo select("height", $sel_size, $size); ?> squares, with <?php echo select("word_count", $sel_words, $words); ?> words.</li>
             </ul>
             <p>The words will come from:</p>
             <ul class="radio-list">
@@ -17,15 +35,11 @@ for ($i = $find_a_word -> c_min_size; $i <= $find_a_word -> c_max_size; $i++) { 
                 for ($i = 1; $i < 250; $i++) {
                     $nums[$i] = $i;
                 }?>
-                <li><?php echo radio("word_source", "dict", "The dictionary <i>(default)</i>", 1);?></li>
-                <li><?php echo radio("word_source", "list", "I will type in a list of words", 0);?></li>
+                <li><?php echo radio("word_source", "dict", "The dictionary", 0);?></li>
+                <li><?php echo radio("word_source", "list", "I will type in a list of words", 1);?></li>
             </ul>
-            <div class="toggle" id="more-options-show">(<a href="JavaScript: void{}" onClick="toggle('more-options')">show</a>)</div>
+            <div class="toggle toggle-hidden" id="more-options-show">(<a href="JavaScript: void{}" onClick="toggle('more-options')">show</a>)</div>
             <div class="toggle toggle-hidden" id="more-options-hide">(<a href="JavaScript: void{}" onClick="toggle('more-options')">hide</a>)</div>
-            <h3>Extra options</h3>
-            <div id="more-options-sub">
-                <dl><dd><i>Configure diagonal words, reverse words, languages, and advanced options.</i></dl>
-            </div>
             <div id="more-options" class="toggle-hidden">
                 <p>Word search language:</p>
                 <?php

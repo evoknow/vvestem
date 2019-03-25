@@ -17,6 +17,15 @@ use Mike42\WordPuzzles\FindAWord;
         <div class="container">
             <ul class="nav navbar-nav">
                 <li><a href="/word-puzzles/index.php">Home</a></li>
+                <li><a href="/word-puzzles/index.php?class=k">K</a></li>
+                <li><a href="/word-puzzles/index.php?class=1">1st Grade</a></li>
+                <li><a href="/word-puzzles/index.php?class=2">2nd Grade</a></li>
+                <li><a href="/word-puzzles/index.php?class=3">3rd Grade</a></li>
+                <li><a href="/word-puzzles/index.php?class=4">4th Grade</a></li>
+                <li><a href="/word-puzzles/index.php?class=5">5th Grade</a></li>
+                <li><a href="/word-puzzles/index.php?class=6">6th Grade</a></li>
+                <li><a href="/word-puzzles/index.php?class=t">Teacher</a></li>
+                <li><a href="/word-puzzles/index.php?class=p">Principal</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/print">Print</a></li>
