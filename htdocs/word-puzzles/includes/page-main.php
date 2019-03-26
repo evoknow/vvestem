@@ -74,7 +74,7 @@ for ($i = $find_a_word -> c_min_size; $i <= $find_a_word -> c_max_size; $i++) { 
                 <button type="submit" name="submit">Next step <i class="glyphicon glyphicon-chevron-right"></i> </button>
             </div>
 
-           <input type=hidden name="class" value="<?php echo $_REQUEST['class']; ?>">
+           <input type=hidden name="class" value="<?php echo isset($_REQUEST['class']) ? $_REQUEST['class'] : 'k'; ?>">
         </form>
 <?php function radio($field, $value, $caption, $selected = 0)
 {

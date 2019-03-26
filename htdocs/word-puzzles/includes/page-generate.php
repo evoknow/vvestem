@@ -2,7 +2,12 @@
    <form action="index.php" method="post">
     <?php
 
+    require_once('common.php');
+
     session_start();
+
+    $class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
+
 
     foreach ($find_a_word -> failure as $eek) {
         /* Knock failed words off the main list */
@@ -50,6 +55,8 @@
 
     ?>
 
+    <h3 style="text-align: center;">Puzzle Created By N/A  (<?php echo get_class_level($class); ?>)</h3>
+
     <?php
      
 
@@ -73,12 +80,12 @@
 
     ?>
     
-    <div id="solution-show">
+    <div style="text-align: center" id="solution-show">
         <input type="submit" name="submit" value="Regenerate" />
         &nbsp; &nbsp; &nbsp;
         <input type="button" onClick="toggle('solution');" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
-	<a id="print_link" target=_blank href="/print.php?file=<?php echo $puzzle_file; ?>">Print Puzzle</a>
+	<a class="button" id="print_link" target=_blank href="/print.php?file=<?php echo $puzzle_file; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
  
     </div>
     <hr/>
@@ -97,6 +104,7 @@
         echo field("lang", $req_lang);
         echo field("diagonal", $req_diagonal);
         echo field("reverse", $req_reverse);
+        echo field("class", $class);
         /* Check-box fields, value indicated by presence/absence */
 if ($req_fast) {
     echo field("fast", 1);

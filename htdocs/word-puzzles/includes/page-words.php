@@ -2,13 +2,15 @@
 <?php
 use Mike42\WordPuzzles\FindAWord;
 
-$class = $_REQUEST['class'];
+$class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'k';
 
-if ($class)
+if ($class) {
    $word_list_str = join("\n", get_words($class));
+}
 
 function get_words($class) {
   
+
    $file = realpath($_SERVER['DOCUMENT_ROOT'] . '/../' .  'words.class.'. $class . '.txt');
     
    if (!file_exists($file)) 

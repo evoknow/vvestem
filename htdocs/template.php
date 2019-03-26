@@ -1,17 +1,24 @@
 <?php
 
-  $student = isset($_REQUEST['student']) ? $_REQUEST['student'] : 'Anonymous'; 
-  $grade   = isset($_REQUEST['grade']) ? $_REQUEST['grade'] : 'N/A'; 
+  require_once(__DIR__ . '/word-puzzles/includes/common.php');
+
+  $grade   = 'N/A';
+
+  $student = isset($_REQUEST['student']) ? $_REQUEST['student'] : 'Student'; 
+
+  if (isset($_REQUEST['grade']))
+      $grade = get_class_level($_REQUEST['grade']);
 
 
 ?>
 <html>
 <head>
+<base href="http://localhost/">
 <style>
 
 .find-a-word {
 
-   font-size: 1.2em;
+   font-size: 1.4em;
    text-align: center;
 }
 
@@ -24,7 +31,7 @@
 .find-a-word td { 
    width:  40px;
    height: 40px;
-   border: 1px solid red;
+   border: 1px solid #000;
 }
 
 h3 {
@@ -43,19 +50,18 @@ table {
 </style>
 </head>
 <body>
-<table style="width: 90%;border: 1px solid green; padding-bottom: 15px;">
+<table style="width: 90%; padding-bottom: 15px;">
 <tr>
 <td>
-<img style="width: 100px;" src="http://valleyviewptc.com/files/2018/08/VV-logo-color-300x300.png">
+<img style="width: 150px;" src="images/vve-logo.png">
 </td>
 <td>
 <h2>Valley View Elementary S.T.E.M Expo 2019</h2>
-<h3>Puzzle Created By <?php echo $student; ?> - <?php echo $grade; ?></h3>
+<h3>Puzzle created by <?php echo $student; ?> <?php echo '(' . $grade . ')'; ?></h3>
+<p style='text-align: center'>Created at <?php echo date('jS F, Y h:i:s a'); ?></p>
 </td>
 </tr>
 </table>
-<h2>Your Word Search Puzzle </h2>
-<p style='text-align: center'>Created at the Valley View Elementary S.T.E.M. Expo <?php echo date('m/d/y h:i:s a'); ?></p>
 <div style="margin-left: auto;margin-right: auto;">
 <?php echo $contents; ?>
 </div>
