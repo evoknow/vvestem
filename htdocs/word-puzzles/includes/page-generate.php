@@ -20,32 +20,56 @@
 
     }
 
+     function make_word_table($list) {
+
+	   $i = 0;
+	   $word_table = '<div class="list-of-words">';
+
+	   $num_words = count($list);
+
+	   $words_per_column =  round($num_words / 5, 0);
+
+	   $word_table = '<div style="padding: 5px; float: left">';
+
+	   foreach($list as $word) {
+
+	      if ($i != 0 && $i % $words_per_column == 0) {
+		   $word_table .= '</div><div style="padding: 5px; float: left">';
+	      }
+
+	      $word_table .= '<div style="padding: 2px;">' . strtoupper($word) . '</div>';
+
+	      $i++;
+	   }
+
+	   $word_table .= "</div><div style='clear: both;'></div></div>";
+
+
+	   return $word_table;
+   }
+
     ?>
 
     <?php
      
 
-    $solution_puzzle = '<table><tr>';
-    $solution_puzzle .= "<div id='solution' class='toggle-hidden'>";
+    $solution_puzzle  = "<div id='solution' class='toggle-hidden'>";
     $solution_puzzle .= $find_a_word -> outpTableKey();
-    $solution_puzzle .= '</div><br>';
+    $solution_puzzle .= '</div>';
 
-    $puzzle = "<div style='padding-top: 50px;' id='solution-sub'>";
+    $puzzle = "<div style='padding-top: 50px;margin-left: auto; margin-right: auto; width: 40%;' id='solution-sub'>";
     $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
+    //$puzzle .= $solution_puzzle;
     $puzzle .= '</div>';
     
+    $list = make_word_table($find_a_word->words);
 
-    $list = "<ol class='word-list'>";
-
-    foreach ($find_a_word->words as $word) {
-        $list .= "<li>".htmlspecialchars($word)."</li>";
-    }
-
-    $list .= "</ol>";
-
-    $puzzle .= $list;
+    $word_block = '<br><div style="width: 75%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
     echo $puzzle; 
-    $puzzle_file = save_puzzle($puzzle); 
+    echo $word_block;
+    
+    // echo $solution_puzzle;
+    $puzzle_file = save_puzzle($puzzle . $word_block); 
 
     ?>
     
@@ -54,7 +78,7 @@
         &nbsp; &nbsp; &nbsp;
         <input type="button" onClick="toggle('solution');" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
-	<a id="print_link" href="/print.php?file=<?php echo $puzzle_file; ?>">Print Puzzle</a>
+	<a id="print_link" target=_blank href="/print.php?file=<?php echo $puzzle_file; ?>">Print Puzzle</a>
  
     </div>
     <hr/>

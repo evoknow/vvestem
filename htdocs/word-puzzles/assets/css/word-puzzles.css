@@ -4608,6 +4608,7 @@ tbody.collapse.in {
   position: relative;
   display: block;
   padding: 10px 15px;
+  color: white;
 }
 .nav > li > a:hover, .nav > li > a:focus {
   text-decoration: none;
@@ -5119,7 +5120,7 @@ tbody.collapse.in {
   color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777;
+  color: #fff;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   color: #333;
@@ -7456,6 +7457,7 @@ td.visible-print {
   padding-left: 0;
   font-size: 1.4em;
   padding: 15px 20px;
+  columns: 4;
 }
 
 .word-list li {

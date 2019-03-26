@@ -16,19 +16,16 @@ use Mike42\WordPuzzles\FindAWord;
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><a href="/word-puzzles/index.php">Home</a></li>
-                <li><a href="/word-puzzles/index.php?class=k">K</a></li>
-                <li><a href="/word-puzzles/index.php?class=1">1st Grade</a></li>
-                <li><a href="/word-puzzles/index.php?class=2">2nd Grade</a></li>
-                <li><a href="/word-puzzles/index.php?class=3">3rd Grade</a></li>
-                <li><a href="/word-puzzles/index.php?class=4">4th Grade</a></li>
-                <li><a href="/word-puzzles/index.php?class=5">5th Grade</a></li>
-                <li><a href="/word-puzzles/index.php?class=6">6th Grade</a></li>
-                <li><a href="/word-puzzles/index.php?class=t">Teacher</a></li>
-                <li><a href="/word-puzzles/index.php?class=p">Principal</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/print">Print</a></li>
+                <li style="background-color: #ccc;"><a href="/word-puzzles/index.php">Home</a></li>
+                <li style="background-color: #9400D3;"><a href="/word-puzzles/index.php?class=k">Kindergarten</a></li>
+                <li style="background-color: #4B0082;"><a href="/word-puzzles/index.php?class=1">1st Grade</a></li>
+                <li style="background-color: #0000FF;"><a href="/word-puzzles/index.php?class=2">2nd Grade</a></li>
+                <li style="background-color: #00FF00;"><a href="/word-puzzles/index.php?class=3">3rd Grade</a></li>
+                <li style="background-color: #FFFF00;"><a href="/word-puzzles/index.php?class=4">4th Grade</a></li>
+                <li style="background-color: #FF7F00;"><a href="/word-puzzles/index.php?class=5">5th Grade</a></li>
+                <li style="background-color: #FF0000;"><a href="/word-puzzles/index.php?class=6">6th Grade</a></li>
+                <li style="background-color: #41d6c3;"><a href="/word-puzzles/index.php?class=t">Teacher</a></li>
+                <li style="background-color: #152934;"><a href="/word-puzzles/index.php?class=p">Principal</a></li>
             </ul>
         </div>
     </nav>

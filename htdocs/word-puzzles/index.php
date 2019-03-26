@@ -70,7 +70,7 @@ if (has('submit')) { /* Everything which involves a submit */
 }
 
 /* Calls to the $find_a_word object under here: */
-$page_title = "Create a Word Puzzle";
+$page_title = "Create your own word puzzle";
 switch ($do) {
     case "nothing":
         $page_script = "main";
