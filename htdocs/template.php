@@ -31,7 +31,8 @@
 .find-a-word td { 
    width:  40px;
    height: 40px;
-   border: 1px solid #000;
+   border: 1px solid green;
+   padding: 10px;
 }
 
 h3 {
@@ -50,7 +51,7 @@ table {
 </style>
 </head>
 <body>
-<table style="width: 75%; padding-bottom: 05px;">
+<table style="width: 75%; padding-bottom: 5px;">
 <tr>
 <td>
 <img style="width: 150px;" src="images/vve-logo.png">
@@ -64,6 +65,18 @@ table {
 </table>
 <div>
 <?php echo $contents; ?>
+</div>
+<div style="width: 90%; margin-left: auto; margin-right: auto; text-align: justify; font-size: 1.2em;">
+<p>
+Computers are very good at solving problems that are hard, tedious, or counter-intuitive for humans.  For example, creating a word puzzle like this one will take an average adult human a lot of time. However, a computer can create many combinations of this puzzle in a fraction of a second!
+</p>
+
+<p>
+Most computer programs that exist today are written by humans. However, it is likely that in the near future many of the programs will be written by other "smart" programs. These "smart" programs are likely to use Artificial Intelligence (AI), which uses many non-intuitive techniques and concepts like the Monty Hall paradox we demonstrated in this S.T.E.M. presentation.
+</p>
+<p style="text-align: center">
+THANK YOU FOR VISITING OUR BOOTH TODAY! 
+</p>
 </div>
 
 </body>

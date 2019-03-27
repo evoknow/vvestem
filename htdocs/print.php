@@ -15,6 +15,8 @@
   $html_file = str_replace('.html', '.processed.html', $file);
   $pdf       = str_replace('.html', '.pdf', $file);
 
+
+
   file_put_contents($html_file, $results);
 
   $cmd       = "$pdf_generator $html_file $pdf";

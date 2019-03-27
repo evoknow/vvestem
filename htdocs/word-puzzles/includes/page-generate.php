@@ -8,6 +8,8 @@
 
     $class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
 
+    if (!$student = get_input('student'))
+	 $student = 'a Student @ Valley View Elementary S.T.E.M 2019';
 
     foreach ($find_a_word -> failure as $eek) {
         /* Knock failed words off the main list */
@@ -42,7 +44,7 @@
 		   $word_table .= '</div><div style="padding: 5px; float: left">';
 	      }
 
-	      $word_table .= '<div style="padding: 2px;">' . strtoupper($word) . '</div>';
+	      $word_table .= '<div style="padding: 7px;font-size: 1.4em">' . strtoupper($word) . '</div>';
 
 	      $i++;
 	   }
@@ -55,12 +57,12 @@
 
     ?>
 
-    <h3 style="text-align: center;">Puzzle Created By N/A  (<?php echo get_class_level($class); ?>)</h3>
+	    <br><h4 style="text-align: center;">A "<?php echo get_class_level($class); ?>" Puzzle Created By <?php echo $student; ?></h4>
 
     <?php
      
     $word_list = explode("\n", get_input('word_list'));
-    $width = 50; // count($word_list) >= 10 ? 40 : 40;
+    $width = 90; // count($word_list) >= 10 ? 40 : 40;
 
     $solution_puzzle  = "<div id='solution' class='toggle-hidden'>";
     $solution_puzzle .= $find_a_word -> outpTableKey();
