@@ -41,9 +41,16 @@ if ($word_source == "dict") {
     echo "<p>Please enter the list of words below, one per line:</p>";
 } ?>
         <form action="index.php" method="post">
+
             <div class="form-group">
                 <textarea cols=35 rows=15 name="word_list"><?php echo htmlspecialchars($word_list_str); ?></textarea>
             </div>
+
+            <div class="form-group">
+		<input type=text name="student" id="student" style="width:100%; padding: 5px;" value="" placeholder="Type Your First Name">
+            </div>
+
+
             <div class="form-group">
                 <button type="submit" name="submit">Make puzzle <i class="glyphicon glyphicon-chevron-right"></i> </button>
             </div>

@@ -89,7 +89,8 @@
         &nbsp; &nbsp; &nbsp;
         <input type="button" onClick="toggle('solution');" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
-	<a class="button" id="print_link" target=_blank href="/print.php?file=<?php echo $puzzle_file; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
+	<a class="button" id="print_link" target=_blank 
+	   href="/print.php?file=<?php echo $puzzle_file; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
  
     </div>
     <hr/>
@@ -109,6 +110,7 @@
         echo field("diagonal", $req_diagonal);
         echo field("reverse", $req_reverse);
         echo field("class", $class);
+        echo field("student", $student);
         /* Check-box fields, value indicated by presence/absence */
 if ($req_fast) {
     echo field("fast", 1);
