@@ -4,13 +4,27 @@ use Mike42\WordPuzzles\FindAWord;
 
 $class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'k';
 
-if ($class) {
-   $word_list_str = join("\n", get_words($class));
+$word_source = get_input('word_source');
+
+if ($word_source != 'dict' && $class) {
+    $word_list_str = join("\n", get_words($class));
+} else {
+
+	$findAWord = new FindAWord();
+	$lang      = 'en';
+
+	if ($findAWord->loadDictionary($lang)) {
+
+	    $findAWord->loadWords([], 10);
+
+            $word_list_str = join("\n", $findAWord->words);
+
+	} else {
+        }
 }
 
 function get_words($class) {
   
-
    $file = realpath($_SERVER['DOCUMENT_ROOT'] . '/../' .  'words.class.'. $class . '.txt');
     
    if (!file_exists($file)) 
@@ -21,9 +35,8 @@ function get_words($class) {
 
 }
 
-if ($req_word_source == "dict") {
-    $fw_lang = FindAWord::supportedLanguages();
-    echo "<p>Please check this list of words. These are from an <b>".$fw_lang[$req_lang] -> name."</b> dictionary.</p>";
+if ($word_source == "dict") {
+    echo "<p>Please check this list of words.</p>";
 } else {
     echo "<p>Please enter the list of words below, one per line:</p>";
 } ?>

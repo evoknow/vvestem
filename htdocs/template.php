@@ -50,7 +50,7 @@ table {
 </style>
 </head>
 <body>
-<table style="width: 90%; padding-bottom: 15px;">
+<table style="width: 75%; padding-bottom: 05px;">
 <tr>
 <td>
 <img style="width: 150px;" src="images/vve-logo.png">
@@ -62,7 +62,7 @@ table {
 </td>
 </tr>
 </table>
-<div style="margin-left: auto;margin-right: auto;">
+<div>
 <?php echo $contents; ?>
 </div>
 

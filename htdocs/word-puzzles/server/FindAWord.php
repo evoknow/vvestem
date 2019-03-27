@@ -120,6 +120,7 @@ class FindAWord
     /* Either select random words, or store a list of words for the puzzle */
     public function loadWords($words = array(), $num = 0)
     {
+
         $this -> words = array();
         if (is_array($words) && count($words) == 0) {
             $i = 1;

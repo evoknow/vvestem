@@ -59,19 +59,21 @@
 
     <?php
      
+    $word_list = explode("\n", get_input('word_list'));
+    $width = 50; // count($word_list) >= 10 ? 40 : 40;
 
     $solution_puzzle  = "<div id='solution' class='toggle-hidden'>";
     $solution_puzzle .= $find_a_word -> outpTableKey();
     $solution_puzzle .= '</div>';
 
-    $puzzle = "<div style='padding-top: 50px;margin-left: auto; margin-right: auto; width: 40%;' id='solution-sub'>";
+    $puzzle = "<div style='padding-top: 20px; width:$width%; margin:0 auto' id='solution-sub'>";
     $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
     //$puzzle .= $solution_puzzle;
     $puzzle .= '</div>';
     
     $list = make_word_table($find_a_word->words);
 
-    $word_block = '<br><div style="width: 75%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
+    $word_block = '<br><div style="width: 90%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
     echo $puzzle; 
     echo $word_block;
     

@@ -17,5 +17,21 @@ function get_class_level($class) {
     }
 
     return $class_level;
+}
 
+
+function get_input($x) {
+
+
+    return isset($_REQUEST[$x]) ? $_REQUEST[$x] : '';
+
+}
+
+
+function debug($x) {
+
+   echo '<PRE>';
+   print_r($x);
+   echo '</PRE>';
+   exit;
 }
