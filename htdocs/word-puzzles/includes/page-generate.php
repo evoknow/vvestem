@@ -44,7 +44,7 @@
 		   $word_table .= '</div><div style="padding: 5px; float: left">';
 	      }
 
-	      $word_table .= '<div style="padding: 7px;font-size: 1.4em">' . strtoupper($word) . '</div>';
+	      $word_table .= '<div style="padding: 5px;font-size: 1em">' . strtoupper($word) . '</div>';
 
 	      $i++;
 	   }
@@ -64,32 +64,36 @@
     $word_list = explode("\n", get_input('word_list'));
     $width = 90; // count($word_list) >= 10 ? 40 : 40;
 
-    $solution_puzzle  = "<div id='solution' class='toggle-hidden'>";
+    $solution_puzzle  = "<div style='padding-top: 20px; width:$width%; margin:0 auto' id='solution'>";
     $solution_puzzle .= $find_a_word -> outpTableKey();
     $solution_puzzle .= '</div>';
 
     $puzzle = "<div style='padding-top: 20px; width:$width%; margin:0 auto' id='solution-sub'>";
     $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
-    //$puzzle .= $solution_puzzle;
     $puzzle .= '</div>';
-    
+
     $list = make_word_table($find_a_word->words);
 
     $word_block = '<br><div style="width: 90%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
-    echo $puzzle; 
-    echo $word_block;
-    
-    // echo $solution_puzzle;
+
     $puzzle_file = save_puzzle($puzzle . $word_block); 
 
     ?>
     
+    <div style="margin-left: auto; margin-right: auto; width: 100%">
+    <div style="float: left"> <?php echo $puzzle;  ?> </div>
+    <div id="solution" style="float: right; display: none"> <?php echo $solution_puzzle;  ?> </div>
+    <div style="clear: both; "></div>
+    </div>
+    <div><?php echo $word_block; ?>
+    
+    
     <div style="text-align: center" id="solution-show">
         <input type="submit" name="submit" value="Regenerate" />
         &nbsp; &nbsp; &nbsp;
-        <input type="button" onClick="toggle('solution');" value="Show solution" />
+        <input type="button" onClick="$('#solution').toggle();" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
-	<a class="button" id="print_link" target=_blank 
+	<a class="button" style="border: 1px solid #ccc; background-color: #229FC8; color: white; padding: 8px 15px; border-radius: 3px;" id="print_link" target=_blank 
 	   href="/print.php?file=<?php echo $puzzle_file; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
  
     </div>

@@ -2,7 +2,9 @@
 require_once("vendor/autoload.php");
 use Mike42\WordPuzzles\FindAWord;
 
-ini_set('session.save_path', '/var/tmp/sessions');
+// On mac
+if (file_exists('/var/tmp/sessions'))
+   ini_set('session.save_path', '/var/tmp/sessions');
 
 header("Content-Type: text/html; charset=utf-8;");
 $find_a_word = new FindAWord();

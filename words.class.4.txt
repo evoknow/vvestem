@@ -9,4 +9,7 @@ basketball
 baseball
 soccer
 Hogwarts
-Witchcraft
+Science
+Technology
+Engineering
+Math

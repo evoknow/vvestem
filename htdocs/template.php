@@ -1,10 +1,14 @@
 <?php
 
+  date_default_timezone_set('America/Los_Angeles');
+  
   require_once(__DIR__ . '/word-puzzles/includes/common.php');
 
   $grade   = 'N/A';
 
   $student = isset($_REQUEST['student']) ? $_REQUEST['student'] : 'a Student'; 
+
+  $student = ucwords(strtolower($student));
 
   if (isset($_REQUEST['grade']))
       $grade = get_class_level($_REQUEST['grade']);
@@ -13,7 +17,7 @@
 ?>
 <html>
 <head>
-<base href="http://localhost/">
+<base href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/">
 <style>
 
 .find-a-word {
@@ -51,14 +55,14 @@ table {
 </style>
 </head>
 <body>
-<table style="width: 75%; padding-bottom: 5px;">
+<table style="width:90%; padding-bottom: 5px;">
 <tr>
 <td>
 <img style="width: 150px;" src="images/vve-logo.png">
 </td>
 <td>
-<h2>Valley View Elementary S.T.E.M Expo 2019</h2>
-<h3>Puzzle created by <?php echo $student; ?> <?php echo '(' . $grade . ')'; ?></h3>
+<h2 style="font-size: 2em">Valley View Elementary<br>S.T.E.M Expo 2019</h2>
+<h3>Puzzle created by <?php echo $student; ?> <?php echo '(' . $grade . ' edition)'; ?></h3>
 <p style='text-align: center'>Created at <?php echo date('jS F, Y h:i:s a'); ?></p>
 </td>
 </tr>
@@ -66,16 +70,12 @@ table {
 <div>
 <?php echo $contents; ?>
 </div>
-<div style="width: 90%; margin-left: auto; margin-right: auto; text-align: justify; font-size: 1em;">
+<div style="width: 90%; margin-left: auto; margin-right: auto; text-align: justify; font-size: 1.2em;">
 <p>
-Computers are very good at solving problems that are hard, tedious, or counter-intuitive for humans.  For example, creating a word puzzle like this one will take an average adult human a lot of time. However, a computer can create many combinations of this puzzle in a fraction of a second!
-</p>
-
-<p>
-Most computer programs that exist today are written by humans. However, it is likely that in the near future many of the programs will be written by other "smart" programs. These "smart" programs are likely to use Artificial Intelligence (AI), which uses many non-intuitive techniques and concepts like the Monty Hall paradox we demonstrated in this S.T.E.M. presentation.
+Computers are very good at solving problems that are hard, tedious, or counterintuitive for humans.  For example, creating a puzzle like this one can take a person many hours! But, a computer program can create many combinations of this puzzle in a fraction of a second!
 </p>
 <p style="font-weight: bold; text-align: center">
-<?php echo ($student != 'a Student') ? strtoupper($student) . ', ' : ''; ?>THANK YOU FOR VISITING OUR BOOTH TODAY! 
+<?php echo !preg_match("/student/i", $student) ? strtoupper($student) . ', ' : ''; ?>THANK YOU FOR VISITING OUR BOOTH TODAY! 
 </p>
 </div>
 
