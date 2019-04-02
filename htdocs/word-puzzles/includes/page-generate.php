@@ -8,8 +8,12 @@
 
     $class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
 
-    if (!$student = get_input('student'))
-	 $student = 'a Student @ Valley View Elementary S.T.E.M 2019';
+    $student = get_input('student');
+
+    if (!$student)
+	 $student = 'a student';
+    else
+        $student = ucwords(strtolower($student));
 
     foreach ($find_a_word -> failure as $eek) {
         /* Knock failed words off the main list */
@@ -34,7 +38,7 @@
 
 	   $num_words = count($list);
 
-	   $words_per_column =  round($num_words / 5, 0);
+	   $words_per_column =  max(round($num_words / 8, 0), 1);
 
 	   $word_table = '<div style="padding: 5px; float: left">';
 
@@ -44,7 +48,7 @@
 		   $word_table .= '</div><div style="padding: 5px; float: left">';
 	      }
 
-	      $word_table .= '<div style="padding: 5px;font-size: 1em">' . strtoupper($word) . '</div>';
+	      $word_table .= '<div style="padding: 3px;font-size: 0.9em">' . strtoupper($word) . '</div>';
 
 	      $i++;
 	   }
@@ -57,7 +61,13 @@
 
     ?>
 
-	    <br><h4 style="text-align: center;">A "<?php echo get_class_level($class); ?>" Puzzle Created By <?php echo $student; ?></h4>
+	    <br><h4 style="text-align: center;">
+                <?php if (!preg_match("/a\s+student/i", $student)): ?>
+		   Puzzle created by <?php echo $student; ?> (<?php echo get_class_level($class); ?>)
+                <?php else: ?>
+		   <?php echo get_class_level($class); ?> Edition
+                <?php endif; ?>
+               </h4>
 
     <?php
      
@@ -68,7 +78,7 @@
     $solution_puzzle .= $find_a_word -> outpTableKey();
     $solution_puzzle .= '</div>';
 
-    $puzzle = "<div style='padding-top: 20px; width:$width%; margin:0 auto' id='solution-sub'>";
+    $puzzle = "<div style='padding-top: 20px; width:$width%; margin:0 auto' id='puzzle'>";
     $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
     $puzzle .= '</div>';
 
@@ -80,18 +90,18 @@
 
     ?>
     
-    <div style="margin-left: auto; margin-right: auto; width: 100%">
-    <div style="float: left"> <?php echo $puzzle;  ?> </div>
-    <div id="solution" style="float: right; display: none"> <?php echo $solution_puzzle;  ?> </div>
-    <div style="clear: both; "></div>
+    <div style="margin-left: auto; margin-right: auto; width: auto;">
+<center>
+       <div> <?php echo $puzzle;  ?> </div>
+        <div id="solution" style="display: none"> <?php echo $solution_puzzle;  ?> </div>
+        <div><?php echo $word_block; ?></div>
+</center>
     </div>
-    <div><?php echo $word_block; ?>
-    
     
     <div style="text-align: center" id="solution-show">
         <input type="submit" name="submit" value="Regenerate" />
         &nbsp; &nbsp; &nbsp;
-        <input type="button" onClick="$('#solution').toggle();" value="Show solution" />
+        <input type="button" onClick="$('#solution').toggle();$('#puzzle').toggle();" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
 	<a class="button" style="border: 1px solid #ccc; background-color: #229FC8; color: white; padding: 8px 15px; border-radius: 3px;" id="print_link" target=_blank 
 	   href="/print.php?file=<?php echo $puzzle_file; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>

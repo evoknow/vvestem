@@ -19,7 +19,7 @@
 
   file_put_contents($html_file, $results);
 
-  $cmd       = "$pdf_generator $html_file $pdf";
+  $cmd = "$pdf_generator --margin-top 30mm --margin-bottom 20mm --margin-left 20mm --margin-right 20mm $html_file $pdf";
 
   system($cmd);
 

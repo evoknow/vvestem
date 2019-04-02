@@ -6,18 +6,20 @@
 
       case '1' :  $size = 10; $words = 10; break;
       case '2' :  $size = 10; $words = 10; break;
-      case '3' :  $size = 10; $words = 10; break;
+      case '3' :  $size = 12; $words = 12; break;
       case '4' :  $size = 13; $words = 15; break;
       case '5' :  $size = 13; $words = 15; break;
       case '6' :  $size = 13; $words = 15; break;
-      case 't' :  $size = 15; $words = 15; break;
-      case 'p' :  $size = 15; $words = 15; break;
+      case 't' :  $size = 16; $words = 16; break;
+      case 'p' :  $size = 16; $words = 16; break;
       default  :  $size = 8; $words = 5;
    }
 
 ?>
 
+<div style="padding: 10px; width: 100%;">
 <h2><?php echo htmlspecialchars($page_title); ?></h2>
+<div style="width: 50%; float: left;">
         <form action="index.php" role="form" class="form-inline" method="post">
             <p>My puzzle will be:</p>
             <ul class="radio-list">
@@ -76,6 +78,16 @@ for ($i = $find_a_word -> c_min_size; $i <= $find_a_word -> c_max_size; $i++) { 
 
            <input type=hidden name="class" value="<?php echo isset($_REQUEST['class']) ? $_REQUEST['class'] : 'k'; ?>">
         </form>
+</div>
+<div style="margin: 30px; padding: 35px;">
+<?php if ($class == '4'): ?>
+<img style="margin-left: 10%; align: center;" src="/images/fieldtrip.png">
+<h3 style="padding-top: 15px; text-align: center">The 4th graders are on a field trip today!</h3>
+<?php else: ?>
+<img style="width: 40%; margin-left: 10%; align: center;" src="/images/puzzle.gif">
+<?php endif; ?>
+</div>
+</div>
 <?php function radio($field, $value, $caption, $selected = 0)
 {
     static $count = 0;

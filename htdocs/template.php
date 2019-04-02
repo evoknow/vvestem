@@ -62,7 +62,12 @@ table {
 </td>
 <td>
 <h2 style="font-size: 2em">Valley View Elementary<br>S.T.E.M Expo 2019</h2>
-<h3>Puzzle created by <?php echo $student; ?> <?php echo '(' . $grade . ' edition)'; ?></h3>
+<?php if (!preg_match("/student/i", $student)): ?>
+    <h3>Puzzle created by <?php echo $student; ?> <?php echo '(' . $grade . ' edition)'; ?></h3>
+<?php else: ?>
+   <h3><?php echo $grade . ' Edition'; ?></h3>
+<?php endif; ?>
+
 <p style='text-align: center'>Created at <?php echo date('jS F, Y h:i:s a'); ?></p>
 </td>
 </tr>
@@ -70,14 +75,13 @@ table {
 <div>
 <?php echo $contents; ?>
 </div>
+<?php if (0): ?>
 <div style="width: 90%; margin-left: auto; margin-right: auto; text-align: justify; font-size: 1.2em;">
-<p>
-Computers are very good at solving problems that are hard, tedious, or counterintuitive for humans.  For example, creating a puzzle like this one can take a person many hours! But, a computer program can create many combinations of this puzzle in a fraction of a second!
-</p>
 <p style="font-weight: bold; text-align: center">
 <?php echo !preg_match("/student/i", $student) ? strtoupper($student) . ', ' : ''; ?>THANK YOU FOR VISITING OUR BOOTH TODAY! 
 </p>
 </div>
+<?php endif; ?>
 
 </body>
 </html>
