@@ -10,8 +10,6 @@
 
   $results = render($data);
 
-  // die($results);
-
   $html_file = str_replace('.html', '.processed.html', $file);
   $pdf       = str_replace('.html', '.pdf', $file);
 

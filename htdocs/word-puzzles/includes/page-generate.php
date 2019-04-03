@@ -1,4 +1,3 @@
-    
    <form action="index.php" method="post">
     <?php
 
@@ -6,9 +5,11 @@
 
     session_start();
 
-    $class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
+    $class   = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
 
+    $class_level   = get_class_level($class);
     $student = get_input('student');
+    $teacher = get_input('teacher');
 
     if (!$student)
 	 $student = 'a student';
@@ -62,10 +63,12 @@
     ?>
 
 	    <br><h4 style="text-align: center;">
-                <?php if (!preg_match("/a\s+student/i", $student)): ?>
-		   Puzzle created by <?php echo $student; ?> (<?php echo get_class_level($class); ?>)
+                <?php if (preg_match("/(Teacher|Principal)/i", $class_level)): ?>
+		   "<?php echo $class_level; ?> Edition" Puzzle created by <?php echo $student; ?> (<?php echo $teacher; ?>)
+                <?php elseif (preg_match("/a\s+student/i", $student)): ?>
+		   <?php echo $class_level; ?>
                 <?php else: ?>
-		   <?php echo get_class_level($class); ?> Edition
+		   Puzzle created by <?php echo $student; ?> (<?php echo $class_level . ' - ' . $teacher; ?>)
                 <?php endif; ?>
                </h4>
 
@@ -104,7 +107,7 @@
         <input type="button" onClick="$('#solution').toggle();$('#puzzle').toggle();" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
 	<a class="button" style="border: 1px solid #ccc; background-color: #229FC8; color: white; padding: 8px 15px; border-radius: 3px;" id="print_link" target=_blank 
-	   href="/print.php?file=<?php echo $puzzle_file; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
+	   href="/print.php?file=<?php echo $puzzle_file; ?>&teacher=<?php echo $teacher; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
  
     </div>
     <hr/>
@@ -125,6 +128,7 @@
         echo field("reverse", $req_reverse);
         echo field("class", $class);
         echo field("student", $student);
+        echo field("teacher", $teacher);
         /* Check-box fields, value indicated by presence/absence */
 if ($req_fast) {
     echo field("fast", 1);
@@ -137,3 +141,6 @@ if ($req_slow) {
 {
     return "<input type=\"hidden\" name=\"$field\" value=\"".htmlspecialchars($value)."\" />\n";
 }?>
+
+<div style="text-align: center; font-weight: bold;" class="footer"><p>Generated <?php echo update_play_counter(); ?> puzzles so far!</p></div>
+

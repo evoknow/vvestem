@@ -44,8 +44,9 @@ $(document).ready(function(){
         </div>
     </nav>
     <div class="container">
-        <div class="main-panel"><?php include("page-".$page_script.".php"); ?>
-        </div>
+        <div class="main-panel"><?php include("page-".$page_script.".php"); ?> </div>
+
+	
     </div>
 </body>
 </html>

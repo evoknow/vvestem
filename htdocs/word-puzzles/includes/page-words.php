@@ -50,6 +50,51 @@ if ($word_source == "dict") {
 		<input type=text name="student" id="student" style="width:100%; padding: 5px;" value="" placeholder="Type Your First Name">
             </div>
 
+            <div class="form-group">
+		<select name="teacher"> 
+                   <option value="">Select your teacher</option> 
+                   <?php if (empty($class) || in_array($class,  ['k', 't','p'])): ?>
+			   <option value="Mrs. Penney">K - Mrs. Penney</option> 
+			   <option value="Mrs. McLean">K - Mrs. McLean</option> 
+			   <option value="Mrs. Dorenzo">K - Mrs. Dorenzo</option> 
+                   <?php endif; ?>
+                   <?php if(empty($class) || in_array($class, ['1', 't', 'p'])): ?>
+			   <option value="Mrs. Scherer">1st - Mrs. Scherer </option> 
+			   <option value="Mrs. Frost">1st - Mrs. Frost</option> 
+                   <?php endif; ?>
+                   <?php if(empty($class) || in_array($class, ['2', 't', 'p'])): ?>
+			   <option value="Mrs. Wagner">2nd - Mrs. Wagner</option> 
+			   <option value="Mrs. Parr">2nd - Mrs. Parr</option> 
+                   <?php endif; ?>
+                   <?php if(empty($class) || in_array($class, ['3', 't', 'p'])): ?>
+			   <option value="Mrs. Grimes">3rd - Mrs. Grimes</option> 
+			   <option value="Mrs. Gardner ">3rd - Mrs. Gardner</option> 
+			   <option value="Mrs. Peart">3rd - Mrs. Peart</option> 
+                   <?php endif; ?>
+                   <?php if(empty($class) || in_array($class, ['4', 't','p'])): ?>
+			   <option value="Mrs. Muller">4th - Mrs. Muller</option> 
+			   <option value="Mrs. Holmes">4th - Mrs. Holmes</option> 
+			   <option value="Mrs. Tweltridge">4th - Mrs. Tweltridge</option> 
+                   <?php endif; ?>
+                   <?php if(empty($class) || in_array($class, ['5', 't', 'p'])): ?>
+			   <option value="Mrs. Koelewyn">5th - Mrs. Koelewyn</option> 
+			   <option value="Mrs. Snyder">5th - Mrs. Snyder</option> 
+                   <?php endif; ?>
+                   <?php if(empty($class) || in_array($class, ['6', 't', 'p'])): ?>
+			   <option value="Mrs. Ennis">6th - Mrs. Ennis </option> 
+			   <option value="Mrs. Gomes">6th - Mrs. Gomes </option> 
+			   <option value="Mrs. McDaniel">6th - Mrs. McDaniel </option> 
+                   <?php endif; ?>
+                   <?php if (empty($class)): ?>
+			   <option value="Mrs. Grizey">VAPA - Mrs. Grizey</option> 
+			   <option value="Mrs. Kruse">SDC - Mrs. Kruse</option> 
+			   <option value="Mrs. Sellers">SDC - Mrs.  Sellers</option> 
+			   <option value="Mr. Dieu">RSP - Mr.  Dieu</option> 
+                   <?php endif; ?>
+                </select>
+            </div>
+
+
 
             <div class="form-group">
                 <button type="submit" name="submit">Make puzzle <i class="glyphicon glyphicon-chevron-right"></i> </button>
