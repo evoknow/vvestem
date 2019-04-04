@@ -21,7 +21,7 @@
 
 .find-a-word {
 
-   font-size: 1.4em;
+   font-size: 1.2em;
    text-align: center;
 }
 
@@ -32,10 +32,10 @@
 }
 
 .find-a-word td { 
-   width:  40px;
-   height: 40px;
+   width:  35px;
+   height: 35px;
    border: 1px solid green;
-   padding: 10px;
+   padding: 1px;
 }
 
 h3 {
@@ -88,7 +88,6 @@ table {
    <div style="float: left"><img style="height: 50px;" src="images/stem-works.jpg"></div>
    <div style="float: right; text-align: right; vertical-align: bottom; padding-top: 5px; color: #000;">
    MADE IN ROCKLIN<br>
-   CALIFORNIA<br>
    </div>
 </div>
 
