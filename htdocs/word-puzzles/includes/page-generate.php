@@ -39,7 +39,7 @@
 
 	   $num_words = count($list);
 
-	   $words_per_column =  max(round($num_words / 8, 0), 1);
+	   $words_per_column =  max(round($num_words / 5, 0), 1);
 
 	   $word_table = '<div style="padding: 5px; float: left">';
 
@@ -49,7 +49,7 @@
 		   $word_table .= '</div><div style="padding: 5px; float: left">';
 	      }
 
-	      $word_table .= '<div style="padding: 3px;font-size: 0.9em">' . strtoupper($word) . '</div>';
+	      $word_table .= '<div style="padding: 3px;font-size: 1em"><div style="padding: 2px 5px; border-radius: 3px; border: 1px solid #ccc;">' . strtoupper($word) . '</div></div>';
 
 	      $i++;
 	   }
