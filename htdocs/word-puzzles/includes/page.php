@@ -45,8 +45,9 @@ $(document).ready(function(){
     </nav>
     <div class="container">
         <div class="main-panel"><?php include("page-".$page_script.".php"); ?> </div>
-
-	
+    <div class="footer">
+         <a style="text-align: center;" href="/word-puzzles/stats.php?cmd=summary">Stats</a>
+    </div>
     </div>
 </body>
 </html>

@@ -1,5 +1,30 @@
 <?php
 
+error_reporting(E_ALL ^ E_NOTICE);
+date_default_timezone_set('America/Los_Angeles');
+
+function get_class_name($c) {
+
+  switch ($c) {
+
+     case 't' : $name = "Teachers's Challenge"; break;
+     case 'p' : $name = "Principal's Challenge"; break;
+     case 'k' : $name = 'Kindergarten'; break;
+     case '1' : $name = '1st Grade'; break;
+     case '2' : $name = '2nd Grade'; break;
+     case '3' : $name = '3rd Grade'; break;
+     case '4' : $name = '4th Grade'; break;
+     case '5' : $name = '5th Grade'; break;
+     case '6' : $name = '6th Grade'; break;
+     case 'k' : $name = 'Kindergarten'; break;
+     default : $name = "N/A";
+
+  }
+
+  return $name;
+
+
+}
 function get_header() {
 
    $student = get_input('student');
@@ -42,25 +67,37 @@ function get_header() {
 
 }
 
-function update_play_counter() {
+function update_play_stats() {
   
-   $counter_file =  sys_get_temp_dir() . '/puzzle.play.json';
+   $stats_file =  sys_get_temp_dir() . '/puzzle.json';
 
-   if (!file_exists($counter_file)) 
+   //unlink($stats_file);
+
+   if (!file_exists($stats_file)) 
    {
-      $json = ['count' => 0];
+      $json['global']['count'] = 0;
+      $json['global']['start'] = time();
    } 
    else 
    {
-       $json = file_get_contents($counter_file);
+       $json = file_get_contents($stats_file);
        $json = json_decode($json, true);
    }
 
+   $json['global']['count']++;
 
-   $json['count']++;
+   $class   = get_input('class');
+   $teacher = get_input('teacher');
+   $student = get_input('student');
 
-   file_put_contents($counter_file, json_encode($json));
-   return $json['count'];
+   $json['class'][$class]['count']++;
+   $json['class'][$class][$teacher]['count']++;
+   $json['class'][$class][$teacher]['students'][$student]++;
+   $json['global']['last'] = time();
+
+
+   file_put_contents($stats_file, json_encode($json));
+   return $json['global']['count'];
 
 }
 

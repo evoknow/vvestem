@@ -132,5 +132,5 @@ if ($req_slow) {
     return "<input type=\"hidden\" name=\"$field\" value=\"".htmlspecialchars($value)."\" />\n";
 }?>
 
-<div style="text-align: center; font-weight: bold;" class="footer"><p>Generated <?php echo update_play_counter(); ?> puzzles so far!</p></div>
+<div style="text-align: center; font-weight: bold;" class="footer"><p>Generated <?php echo update_play_stats(); ?> puzzles so far!</p></div>
 
