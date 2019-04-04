@@ -43,7 +43,7 @@
             set_time_limit(0);
             @readfile("$pdf") or die("File not found.");
 
-            $results = shell_exec("$print_cmd -d $printer_name $pdf 2>&1");
+            // $results = shell_exec("$print_cmd -d $printer_name $pdf 2>&1");
   } else {
 
 	die("Cannot find file $pdf");

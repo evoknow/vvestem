@@ -7,9 +7,9 @@
 
     $class   = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
 
-    $class_level   = get_class_level($class);
-    $student = get_input('student');
-    $teacher = get_input('teacher');
+    $class_level = get_class_level($class);
+    $student     = get_input('student');
+    $teacher     = get_input('teacher');
 
     if (!$student)
 	 $student = 'a student';
@@ -62,15 +62,7 @@
 
     ?>
 
-	    <br><h4 style="text-align: center;">
-                <?php if (preg_match("/(Teacher|Principal)/i", $class_level)): ?>
-		   "<?php echo $class_level; ?> Edition" Puzzle created by <?php echo $student; ?> (<?php echo $teacher; ?>)
-                <?php elseif (preg_match("/a\s+student/i", $student)): ?>
-		   <?php echo $class_level; ?>
-                <?php else: ?>
-		   Puzzle created by <?php echo $student; ?> (<?php echo $class_level . ' - ' . $teacher; ?>)
-                <?php endif; ?>
-               </h4>
+	    <br><h4 style="text-align: center;"><?php echo get_header(); ?> </h4>
 
     <?php
      
@@ -85,10 +77,8 @@
     $puzzle .= $find_a_word->outpTable($find_a_word->puzzle);
     $puzzle .= '</div>';
 
-    $list = make_word_table($find_a_word->words);
-
-    $word_block = '<br><div style="width: 90%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
-
+    $list        = make_word_table($find_a_word->words);
+    $word_block  = '<br><div style="width: 90%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
     $puzzle_file = save_puzzle($puzzle . $word_block); 
 
     ?>

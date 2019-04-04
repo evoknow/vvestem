@@ -13,6 +13,8 @@
   if (isset($_REQUEST['grade']))
       $grade = get_class_level($_REQUEST['grade']);
 
+  $header = get_header();
+
 ?>
 <html>
 <head>
@@ -61,13 +63,7 @@ table {
 </td>
 <td>
 <h2 style="font-size: 2.5em">Valley View Elementary<br>S.T.E.M EXPO 2019</h2>
-<?php if (preg_match("/(Teacher|Principal)/i", $grade)): ?>
-    <h3>"<?php echo $grade; ?> Edition" Puzzle created by <?php echo $student; ?> <?php echo "($teacher)"; ?></h3>
-<?php elseif (!preg_match("/student/i", $student)): ?>
-    <h3>Puzzle created by <?php echo $student; ?> <?php echo "($grade - $teacher)"; ?></h3>
-<?php else: ?>
-   <h3><?php echo $grade . ' Edition'; ?></h3>
-<?php endif; ?>
+   <h3><?php echo $header; ?></h3>
 
 <p style='text-align: center'>Created at <?php echo date('jS F, Y h:i:s a'); ?></p>
 </td>
