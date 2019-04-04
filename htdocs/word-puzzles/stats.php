@@ -4,22 +4,21 @@ require_once('includes/common.php');
 require_once('includes/stats.php');
 
 $cmd     = $_REQUEST['cmd'];
-
 $results = get_stats();
 
 $class_stats = !empty($results['stats']['class']) ? $results['stats']['class'] : null;
+$global      = $results['stats']['global'];
 
-//debug($results);
-$global = $results['stats']['global'];
+if (!empty($class_stats))
+    uasort($class_stats, 'cmp');
 
-// debug($class_stats);
-// if ( $global['last'] &&  $global['start'] )
-//    $total_time = $global['last'] - $global['start'];
-// else
-//    $total_time = null;
+if ($cmd == 'challenges') {
 
-uasort($class_stats, 'cmp');
+    $cnt  = 0;
+    $cnt  = !empty($results['principal']) ? count($results['principal']) : 0;
+    $cnt += !empty($results['teacher'])   ? count($results['teacher'])   : 0;
 
+}
 
 function cmp($a, $b) {
 
@@ -112,6 +111,33 @@ function cmp($a, $b) {
                 </table>
             <?php endif; ?>
 
+            <?php if ($cmd == 'challenges'): ?>
+                <table class="table">
+                    <tr>
+                        <td>Total Challenge Puzzles Created</td>
+                        <td><h3><?php echo $cnt; ?></h3></td>
+                       
+                    </tr>
+                    
+                    <?php if ($results): ?>
+
+                    <?php foreach($results as $challenge_type => $cdata): ?>
+                     
+                        <?php foreach($cdata as $teacher => $data): ?>
+                            
+                            <?php if ($teacher != 'count'): ?>
+                            <tr>
+                                <td><?php echo ucwords($challenge_type) . ' - ' . $teacher; ?></td>
+                                <td><h3> <?php echo $data['count'] ?></h3></td>
+                            </tr>
+                           <?php endif; ?>
+                        <?php endforeach; ?>
+                    
+                    <?php endforeach; ?>
+
+                    <?php endif; ?>    
+                </table>
+            <?php endif; ?>
         </div>
 
 	

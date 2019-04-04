@@ -6,13 +6,35 @@ function get_stats() {
 
    switch($cmd) {
 
-      case 'class'  : $results = get_class_stats(); break;
+      case 'class'       : $results = get_class_stats(); break;
+      case 'challenges'  : $results = get_challenges_stats(); break;
 
       default: $results = get_summary_stats();
    }
 
    return $results;
 }
+
+
+function get_challenges_stats() {
+
+   $header = get_stats_header('challenges');
+
+   $data['header'] = $header;
+
+   $data['stats'] = read_stats();
+
+   $stats = [];
+
+   if (!empty($data['stats']['class']['p']))
+       $stats['principal'] = $data['stats']['class']['p'];
+
+   if (!empty($data['stats']['class']['t']))
+       $stats['teacher']   = $data['stats']['class']['t'];
+
+   return $stats;
+}
+
 
 function get_class_stats() {
 
@@ -22,7 +44,6 @@ function get_class_stats() {
 
    $data['stats'] = read_stats();
 
-   debug($data['stats']);
 
    return $data;
 }
