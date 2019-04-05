@@ -3,6 +3,31 @@
 error_reporting(E_ALL ^ E_NOTICE);
 date_default_timezone_set('America/Los_Angeles');
 
+session_start();
+
+function get_puzzle_name() {
+
+   $student = get_input('student');
+   $teacher = get_input('teacher');
+   $class   = get_input('class');
+   $grade   = get_input('grade');
+
+   $last_puzzle = !empty($_SESSION['puzzle_count']) ? $_SESSION['puzzle_count'] : 1;
+
+   $_SESSION['puzzle_count'] = $last_puzzle + 1;
+   
+   return "puzzle_" . $last_puzzle;
+
+}
+
+function save_solution($name, $solution) {
+
+    $file =  sys_get_temp_dir() . 'solution_' . $name . '.html';
+    file_put_contents($file, $solution);
+
+    return true;
+}
+
 function get_class_name($c) {
 
   switch ($c) {
@@ -71,7 +96,7 @@ function update_play_stats() {
   
    $stats_file =  sys_get_temp_dir() . '/puzzle.json';
 
-   //unlink($stats_file);
+   // unlink($stats_file);
 
    if (!file_exists($stats_file)) 
    {

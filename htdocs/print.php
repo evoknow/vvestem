@@ -32,7 +32,7 @@
 
   if (file_exists($pdf)) {
 
-	    header("Pragma: public");
+	          header("Pragma: public");
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
             header("Cache-Control: private",false);
@@ -43,7 +43,10 @@
             set_time_limit(0);
             @readfile("$pdf") or die("File not found.");
 
+            print command (open it for show)
             $results = shell_exec("$print_cmd -d $printer_name $pdf 2>&1");
+
+        
   } else {
 
 	die("Cannot find file $pdf");

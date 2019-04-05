@@ -1,9 +1,8 @@
-   <form action="index.php" method="post">
+
     <?php
 
     require_once('common.php');
 
-    session_start();
 
     $class   = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'N/A';
 
@@ -20,6 +19,9 @@
         /* Knock failed words off the main list */
         unset($find_a_word -> words[$eek]);
     }
+
+    // Get an unique name for this puzzle
+    $puzzle_name = get_puzzle_name();
 
     function save_puzzle($puzzle) { 
 
@@ -61,6 +63,7 @@
    }
 
     ?>
+       <form action="index.php" method="post">
 
 	    <br><h4 style="text-align: center;"><?php echo get_header(); ?> </h4>
 
@@ -81,6 +84,8 @@
     $word_block  = '<br><div style="width: 90%; margin-left: auto; margin-right: auto; border: 2px solid black;">' . $list . '</div><br>';
     $puzzle_file = save_puzzle($puzzle . $word_block); 
 
+    save_solution($puzzle_name, $solution_puzzle);
+
     ?>
     
     <div style="margin-left: auto; margin-right: auto; width: auto;">
@@ -97,7 +102,7 @@
         <input type="button" onClick="$('#solution').toggle();$('#puzzle').toggle();" value="Show solution" />
         &nbsp; &nbsp; &nbsp;
 	<a class="button" style="border: 1px solid #ccc; background-color: #229FC8; color: white; padding: 8px 15px; border-radius: 3px;" id="print_link" target=_blank 
-	   href="/print.php?file=<?php echo $puzzle_file; ?>&teacher=<?php echo $teacher; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>">Print Puzzle</a>
+	   href="/print.php?file=<?php echo $puzzle_file; ?>&teacher=<?php echo $teacher; ?>&student=<?php echo $student; ?>&grade=<?php echo $class; ?>&name=<?php echo $puzzle_name; ?>">Print Puzzle</a>
  
     </div>
     <hr/>

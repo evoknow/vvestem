@@ -1,5 +1,5 @@
 <?php
-require_once("vendor/autoload.php");
+//require_once("vendor/autoload.php");
 require_once('includes/common.php');
 require_once('includes/stats.php');
 
@@ -7,7 +7,7 @@ $cmd     = $_REQUEST['cmd'];
 $results = get_stats();
 
 $class_stats = !empty($results['stats']['class']) ? $results['stats']['class'] : null;
-$global      = $results['stats']['global'];
+$global      = !empty($results['stats']['global']) ? $results['stats']['global'] : null;
 
 if (!empty($class_stats))
     uasort($class_stats, 'cmp');
@@ -15,10 +15,10 @@ if (!empty($class_stats))
 if ($cmd == 'challenges') {
 
     $cnt  = 0;
-    $cnt  = !empty($results['principal']) ? count($results['principal']) : 0;
-    $cnt += !empty($results['teacher'])   ? count($results['teacher'])   : 0;
+    $cnt  = !empty($results['principal']) ? $results['principal']['count'] : 0;
+    $cnt += !empty($results['teacher'])   ? $results['teacher']['count']   : 0;
 
-}
+} 
 
 function cmp($a, $b) {
 
@@ -52,12 +52,14 @@ function cmp($a, $b) {
                 <li id="class" style="background-color: #4B0082;"><a href="/word-puzzles/stats.php?cmd=class">Class</a></li>
                 <li id="challenges" style="background-color: #0000FF;"><a href="/word-puzzles/stats.php?cmd=challenges">Challenges</a>
                 </li>
+                <li id="solution" style="background-color: orange;"><a href="/word-puzzles/stats.php?cmd=solutions">Solutions</a>
+                </li>
             </ul>
         </div>
     </nav>
     <div class="container">
 	<div class="main-panel">
-            <div class="table-responsive"><?php echo $results['header']; ?> </div>
+            <div class="table-responsive"><?php echo $results['header']; ?></div>
 
             <?php if ($cmd == 'summary'): ?>
                 <table class="table">
@@ -138,6 +140,30 @@ function cmp($a, $b) {
                     <?php endif; ?>    
                 </table>
             <?php endif; ?>
+
+
+            <?php if ($cmd == 'solutions'): ?>
+                <table class="table">
+               
+
+                    <?php foreach($results['solutions'] as $s): ?>
+                      <tr>
+                     
+                        <td><a target=_blank href="/word-puzzles/stats.php?cmd=view_solution&file=<?php echo $s; ?>"><?php echo preg_replace("/solution_puzzle_/", 'Puzzle ', str_replace('.html', '', basename($s))); ?></td>
+                    </tr>                      
+                    <?php endforeach; ?>
+        
+                </table>
+            <?php endif; ?>
+
+            <?php if ($cmd == 'view_solution'): ?>
+               <div style="text-align: center;"><?php echo $results['contents']; ?></div>
+               <br>
+               <p style="text-align: center;">
+                 <a href="/word-puzzles/stats.php?cmd=solutions">Back to Solutions</a>
+               </p>
+            <?php endif; ?>
+
         </div>
 
 	
