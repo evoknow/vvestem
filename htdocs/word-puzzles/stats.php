@@ -54,6 +54,7 @@ function cmp($a, $b) {
                 </li>
                 <li id="solution" style="background-color: orange;"><a href="/word-puzzles/stats.php?cmd=solutions">Solutions</a>
                 </li>
+                <li id="printer" target=_blank style="background-color: green;"><a href="http://localhost:631">Printer</a>
             </ul>
         </div>
     </nav>
@@ -64,7 +65,7 @@ function cmp($a, $b) {
             <?php if ($cmd == 'summary'): ?>
                 <table class="table">
                     <tr>
-                        <td>Total Puzzles Created</td>
+                        <td><h3>Total Puzzles Created</h3></td>
                         <td><h3><?php echo $results['stats']['global']['count']; ?></h3></td>
                        
                     </tr>
@@ -74,7 +75,7 @@ function cmp($a, $b) {
                     <?php foreach($class_stats as $class => $cdata): ?>
                      
                         <tr>
-                            <td><?php echo get_class_name($class); ?></td>
+                            <td><h3><?php echo get_class_name($class); ?></h3></td>
                             <td><h3> <?php echo $cdata['count']; ?></h3></td>
                         </tr>
                     
@@ -88,7 +89,7 @@ function cmp($a, $b) {
             <?php if ($cmd == 'class'): ?>
                 <table class="table">
                     <tr>
-                        <td>Total Puzzles Created</td>
+                        <td><h3>Total Puzzles Created</h3></td>
                         <td><h3><?php echo $results['stats']['global']['count']; ?></h3></td>
                        
                     </tr>
@@ -101,7 +102,7 @@ function cmp($a, $b) {
                             
                             <?php if ($teacher != 'count'): ?>
                             <tr>
-                                <td><?php echo get_class_name($class) . ' - ' . $teacher; ?></td>
+                                <td><h3><?php echo get_class_name($class) . ' - ' . $teacher; ?></h3></td>
                                 <td><h3> <?php echo $data['count']; ?></h3></td>
                             </tr>
                            <?php endif; ?>
@@ -116,7 +117,7 @@ function cmp($a, $b) {
             <?php if ($cmd == 'challenges'): ?>
                 <table class="table">
                     <tr>
-                        <td>Total Challenge Puzzles Created</td>
+                        <td><h3>Total Challenge Puzzles</h3></td>
                         <td><h3><?php echo $cnt; ?></h3></td>
                        
                     </tr>
@@ -129,7 +130,7 @@ function cmp($a, $b) {
                             
                             <?php if ($teacher != 'count'): ?>
                             <tr>
-                                <td><?php echo ucwords($challenge_type) . ' - ' . $teacher; ?></td>
+                                <td><h3><?php echo ucwords($challenge_type) . ' - ' . $teacher; ?></h3></td>
                                 <td><h3> <?php echo $data['count'] ?></h3></td>
                             </tr>
                            <?php endif; ?>
@@ -149,7 +150,8 @@ function cmp($a, $b) {
                     <?php foreach($results['solutions'] as $s): ?>
                       <tr>
                      
-                        <td><a target=_blank href="/word-puzzles/stats.php?cmd=view_solution&file=<?php echo $s; ?>"><?php echo preg_replace("/solution_puzzle_/", 'Puzzle ', str_replace('.html', '', basename($s))); ?></td>
+                        <td><a target=_blank href="/word-puzzles/stats.php?cmd=view_solution&file=<?php echo $s; ?>"><?php echo preg_replace("/solution_puzzle_/", 'Puzzle ', str_replace('.html', '', basename($s))); ?>
+                        </td>
                     </tr>                      
                     <?php endforeach; ?>
         

@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+#  Enable web interface for cups
+cupsctl WebInterface=yes
+
+# Web interface
+# http://localhost:631/
+
 # Get the list of currently avialable printers on mac
 ## /usr/bin/lpstat -p -d
 

@@ -86,7 +86,7 @@ table {
    <div style="float: left"><img style="height: 50px;" src="images/stem-works.jpg"></div>
    <div style="float: right; text-align: right; vertical-align: bottom; padding-top: 5px; color: #000;">
    MADE IN ROCKLIN<br>
-   ID: <?php echo $puzzle_name; ?>
+   ID: <?php echo str_replace('_', ' ', strtoupper($puzzle_name)); ?>
    </div>
 </div>
 

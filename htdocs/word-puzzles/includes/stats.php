@@ -83,7 +83,7 @@ function get_challenges_stats() {
 
 function get_class_stats() {
 
-   $header = get_stats_header('class');
+   $header = get_stats_header('Class Participation');
 
    $data['header'] = $header;
 
@@ -108,7 +108,7 @@ function get_summary_stats() {
 
 function get_stats_header($section) {
 
-   return '<h1>' . ucwords("$section") . '</h1>';
+   return '<h2>' . ucwords("$section") . '</h2>';
 }
 
 function read_stats() {
