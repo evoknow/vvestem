@@ -30,7 +30,10 @@ function view_solution() {
     $data['header'] = $header;
 
 
-    $data['contents'] = file_get_contents($file);
+    if (file_exists($file))
+        $data['contents'] = file_get_contents($file);
+    else
+        $data['contents'] = 'Puzzle solution is missig';
 
     return $data;
 
@@ -46,6 +49,9 @@ function get_solutions() {
    $dir  = sys_get_temp_dir();
 
    $last = $_SESSION['puzzle_count'];
+
+   if (!$last)
+       return false;
 
    for($i=1; $i<= $last; $i++) {
 

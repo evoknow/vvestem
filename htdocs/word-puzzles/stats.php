@@ -54,7 +54,7 @@ function cmp($a, $b) {
                 </li>
                 <li id="solution" style="background-color: orange;"><a href="/word-puzzles/stats.php?cmd=solutions">Solutions</a>
                 </li>
-                <li id="printer" target=_blank style="background-color: green;"><a href="http://localhost:631">Printer</a>
+                <li id="printer" style="background-color: green;"><a target=_blank href="http://localhost:631">Printer</a>
             </ul>
         </div>
     </nav>
@@ -147,7 +147,7 @@ function cmp($a, $b) {
                 <table class="table">
                
 
-                    <?php foreach($results['solutions'] as $s): ?>
+                    <?php if ($results['solutions']) foreach($results['solutions'] as $s): ?>
                       <tr>
                      
                         <td><a target=_blank href="/word-puzzles/stats.php?cmd=view_solution&file=<?php echo $s; ?>"><?php echo preg_replace("/solution_puzzle_/", 'Puzzle ', str_replace('.html', '', basename($s))); ?>
